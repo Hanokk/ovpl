@@ -132,7 +132,7 @@ def test_lab(vmmgr_ip, port, lab_src_url, version=None):
         try:
             response = requests.post(url=url, data=payload)
             Logging.LOGGER.debug("LabManager.test_lab(): response = %s" % response)
-            return ("Success" in response.text, "Success")
+            return (response.status_code is 200, "Success")
         except Exception, e:
             exception_str = str(e)
             attempts = {0:'first', 1:'second', 2:'third', 3:'fourth'}
